@@ -1,13 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Calc</title>
-    <style>
-        .stms {
-            color: black;
-        }
 
-    </style>
 </head>
 <body>
 <form action="/calc" method="post">
@@ -22,14 +19,9 @@
     <input type="text" name="num2" placeholder="number 2">
     <button>Calc</button>
 </form>
-
-
 ${requestScope.res}
-
-<ul class="stms">
-<a href="/">Main</a>
-</ul>
-
-
 </body>
+
+<p><a href="/">Main</a></p>
+
 </html>

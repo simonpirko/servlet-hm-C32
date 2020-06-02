@@ -27,6 +27,7 @@ public class AuthServlet extends HttpServlet {
         User user = userService.authService(login, password);
         if (user != null){
             req.getSession().setAttribute("currentUser", user);
+            req.getSession().setAttribute("checkAuth", true);
             resp.sendRedirect("/");
         }
         else {
