@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h2>${"History"}</h2>
+<h2>"History"</h2>
 
 <ul style="list-style: decimal">
 
