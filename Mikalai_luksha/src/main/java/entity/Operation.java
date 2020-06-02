@@ -24,12 +24,18 @@ public class Operation implements Comparable <Operation>{
     @Override
     public String toString() {
         ServiceCalc serviceCalc = new ServiceCalc();
-        return num1 +" "+ serviceCalc.symbol(operation) + " "+ num2 + " = "+  res + ", "  + "user=" + user.getName();
+        return num1 +" "+ serviceCalc.symbol(operation) + " "+ num2 + " = "+  res + " || "  + " User " + user.getName();
     }
 
 
     @Override
     public int compareTo(Operation o) {
-        return Double.compare(this.res, res);
+
+        return Double.compare(this.res, o.res);
+    }
+
+
+    public int compareToRevers (Operation o) {
+        return Double.compare(o.res, this.res);
     }
 }

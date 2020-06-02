@@ -38,12 +38,6 @@
     </c:if>
 </ul>
 
-
-<%--<a href="/reg">Reg</a>--%>
-<%--<a href="/auth">Auth</a>--%>
-<%--<a href="/calc">Calc</a>--%>
-<%--<a href="/logout">Logout</a>--%>
-<%--<a href="/history">History</a>--%>
 <h4>${requestScope.message}</h4>
 </body>
 </html>

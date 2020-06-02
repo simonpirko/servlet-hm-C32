@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/history", name = "HistoryServlet")
@@ -23,14 +24,15 @@ public class HistoryServlet extends HttpServlet {
         if (operation != null) {
             List<Operation> result = (List<Operation>) req.getSession().getAttribute("result");
             List<Operation> operations = (List<Operation>) historyService.calcResult(operation, result);
+            List<Operation> operations1 =  new ArrayList<>(operations);
             if (sort != null && sort.equalsIgnoreCase("asc")){
-                operations.sort(Operation::compareTo);
+                operations1.sort(Operation::compareTo);
             }
-
-
-            req.setAttribute("resHis", operations);
+            if (sort != null && sort.equalsIgnoreCase("desc")){
+                operations1.sort(Operation::compareToRevers);
+            }
+            req.setAttribute("resHis", operations1);
         }
-
 
         getServletContext().getRequestDispatcher("/pages/history.jsp").forward(req, resp);
     }

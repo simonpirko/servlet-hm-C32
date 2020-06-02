@@ -1,5 +1,4 @@
-<%@ page import="java.util.List" %>
-<%@ page import="entity.Operation" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -22,6 +21,7 @@
     </label>
     <label>
         <select name="sort">
+            <option value="no">  NO  </option>
             <option value="asc">  ASC  </option>
             <option value="desc">  DESC  </option>
         </select>
@@ -39,5 +39,5 @@
 
 </body>
 
-<a href="/">main</a>
+<b> <a href="/">Main</a> </b>
 </html>
