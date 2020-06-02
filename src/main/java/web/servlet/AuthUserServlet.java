@@ -1,5 +1,6 @@
 package web.servlet;
 
+import service.UserService;
 import service.UserStorage;
 import entity.User;
 
@@ -14,13 +15,6 @@ import java.io.IOException;
 public class AuthUserServlet extends HttpServlet {
     private UserStorage userStorage = new UserStorage();
 
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        User userByLogin1 = userStorage.getUserByLogin(req.getParameter("name"));
-//        req.setAttribute("name", userByLogin1);
-//        req.getServletContext().getRequestDispatcher("/logout").forward(req, resp);
-//    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher("/pages/auth.jsp").forward(req, resp);
@@ -28,26 +22,23 @@ public class AuthUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User userByLogin = userStorage.getUserByLogin(req.getParameter("login"));
-        try {
-            if (userByLogin.getLogin() == null || !userByLogin.getLogin().equals("login")) {
-            }
-        }catch (NullPointerException e){
-            req.setAttribute("massage", "User not found");
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        if (login.isEmpty() || password.isEmpty()) {
+            req.setAttribute("massage", "All fields must be filled ");
             req.getServletContext().getRequestDispatcher("/pages/auth.jsp").forward(req, resp);
-        }
-
-        if (userByLogin.getPassword().equals(req.getParameter("password"))&&
-                userByLogin.getLogin().equals(req.getParameter("login"))) {
-            req.getSession().setAttribute("currentUser", userByLogin);
-//            resp.getWriter().println("Yor are authorized." + "Hi " + userByLogin.getName() + "!");
-            req.setAttribute("massage","Yor are authorized");
-            resp.sendRedirect("/");
         } else {
-            if (!userByLogin.getPassword().equals(req.getParameter("password")) || userByLogin.getPassword()==null)
-//            resp.getWriter().println("password is not correct!");
-            req.setAttribute("massage","Incorrect password");
-            req.getServletContext().getRequestDispatcher("/pages/auth.jsp").forward(req, resp);
+            UserService userService = new UserService();
+            User user = userService.authService(login, password);
+            if (user != null){
+                req.getSession().setAttribute("currentUser", user);
+                req.getSession().setAttribute("checkAuth", true);
+                resp.sendRedirect("/");
+            } else {
+                String message = userService.authMessageService(login, password);
+                req.setAttribute("message",message);
+                getServletContext().getRequestDispatcher("/pages/auth.jsp").forward(req, resp);
+            }
         }
     }
 }

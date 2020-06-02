@@ -24,10 +24,11 @@
 </form>
 Result = ${requestScope.resultOperation}
 <form action="/">
-    <button>Exit in Menu</button>
+    <button>Back to the main page</button>
 </form>
 <form action="/history">
     <button>ShowHistory</button>
 </form>
+${requestScope.massage}
 </body>
 </html>

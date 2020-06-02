@@ -16,6 +16,10 @@
     <input type="text" name="password" placeholder="Password">
     <button>Submit</button>
 </form>
+<form action="/" >
+    <button>Back to the main page</button>
+</form>
 ${requestScope.massage}
+<p>${requestScope.message}</p>
 </body>
 </html>

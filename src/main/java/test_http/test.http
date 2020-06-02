@@ -7,18 +7,18 @@ POST http://localhost:8080/reg?name=Andrei&login=Andrew&password=12345
 POST http://localhost:8080/auth?login=Andrew&password=12345
 
 ###
-GET http://localhost:8080/logout
+POST http://localhost:8080/logout
 
 ###
-GET http://localhost:8080/history?operation=sum
+POST http://localhost:8080/history?operation=sum
 
 ###
-GET http://localhost:8080/history?operation=multiply
+POST http://localhost:8080/history?operation=multiply
 
 ###
-GET http://localhost:8080/history?operation=clear
+POST http://localhost:8080/history?operation=clear
 
 ###
-GET http://localhost:8080/history?operation=showAll
+POST http://localhost:8080/history?operation=showAll
 
 ###

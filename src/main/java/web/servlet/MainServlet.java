@@ -25,25 +25,26 @@ public class MainServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         if (session.getAttribute("currentUser") == null) {
-            resp.getWriter().println("Access denied");
+            req.setAttribute("massage", "Access denied");
+            req.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(req, resp);
         } else {
-            User currentUser = (User) session.getAttribute("currentUser");
             if (req.getSession().getAttribute("all operation") == null) {
                 req.getSession().setAttribute("all operation", new ArrayList<>());
             }
             String num1 = req.getParameter("num1");
             String num2 = req.getParameter("num2");
             String operation = req.getParameter("operation");
-            double resultOperation = Calculator.calculator(Integer.parseInt(num1), Integer.parseInt(num2), operation);
-            req.setAttribute("resultOperation",resultOperation);
-            req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
-//            resp.getWriter().println
-//                    ("Hi " + currentUser.getName() +
-//                            "!" + "Yore result " + num1 + " " + operation + " " + num2 + " = " + resultOperation);
+            if (num1.isEmpty() || num2.isEmpty()) {
+                req.setAttribute("massage", "All fields must be filled ");
+                req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
+            } else {
+                double resultOperation = Calculator.calculator(Double.parseDouble(num1), Double.parseDouble(num2), operation);
+                req.setAttribute("resultOperation", resultOperation);
+                req.getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
+                List<String> all_operation = (List<String>) getServletContext().getAttribute("all operation");
+                all_operation.add("Result= " + num1 + " " + operation + " " + num2 + "= " + resultOperation);
 
-            List<String> all_operation = (List<String>) getServletContext().getAttribute("all operation");
-            all_operation.add("Result= " + num1 + " " + operation + " " + num2 + "= " + resultOperation);
-
+            }
         }
     }
 }

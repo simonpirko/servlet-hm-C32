@@ -21,27 +21,22 @@ public class RegUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User userByLogin = userStorage.getUserByLogin(req.getParameter("login"));
-
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        User user = new User(name, login, password);
+        if (name.isEmpty() || login.isEmpty() || password.isEmpty()) {
+            req.setAttribute("massage", "All fields must be filled ");
+            req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, resp);
+        } else {
+            User user = new User(name, login, password);
 
-//        try {
-//            if (userStorage.getUserByLogin("login").equals(login)) {
-//                req.getSession().setAttribute("currentUser", user);
-//                req.setAttribute("massage","User is already exists");
-//                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, resp);
-//            }
-//        } catch (NullPointerException e) {
-////            resp.getWriter().println("User is already exists");
-//            req.setAttribute("massage","User is already exists");
-//            req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, resp);
-//        }
-        resp.sendRedirect("/auth");
-        userStorage.add(user);
-       // resp.getWriter().println("Registration was successful. Your data:" + "name - " + user.getName() + " ;login -  " + user.getLogin() + " ;password -  " + user.getPassword());
-
+            if (userStorage.checkUserByLogin("login")) {
+                req.setAttribute("massage", "User is already exists");
+                req.getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, resp);
+            } else {
+                resp.sendRedirect("/auth");
+                userStorage.add(user);
+            }
+        }
     }
 }
