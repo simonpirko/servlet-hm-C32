@@ -11,7 +11,7 @@ import service.ServiceCalc;
 @NoArgsConstructor
 
 
-public class Operation {
+public class Operation implements Comparable <Operation>{
 
 
 
@@ -25,5 +25,11 @@ public class Operation {
     public String toString() {
         ServiceCalc serviceCalc = new ServiceCalc();
         return num1 +" "+ serviceCalc.symbol(operation) + " "+ num2 + " = "+  res + ", "  + "user=" + user.getName();
+    }
+
+
+    @Override
+    public int compareTo(Operation o) {
+        return Double.compare(this.res, res);
     }
 }

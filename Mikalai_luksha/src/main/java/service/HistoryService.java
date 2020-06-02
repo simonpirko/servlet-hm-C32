@@ -11,59 +11,58 @@ public class HistoryService {
 
         switch (operation) {
             case ("all"):
-                return HistoryService.allResult(result);
+                return allResult(result);
             case ("plus"):
-                return HistoryService.plusResult(result);
+                return plusResult(result);
             case ("minus"):
-                return HistoryService.minusResult(result);
+                return minusResult(result);
             case ("div"):
-                return HistoryService.divResult(result);
+                return divResult(result);
             case ("times"):
-                return HistoryService.timesResult(result);
+                return timesResult(result);
             default:
                 throw new IllegalStateException("Unexpected value: " + operation);
         }
     }
 
-    public List allResult (List<Operation> list){
-        List listAllResult = list;
-        return listAllResult;
+    private List allResult (List<Operation> list){
+        return list;
     }
 
-    public List plusResult (List<Operation> list) {
+    private List plusResult (List<Operation> list) {
         List plusList = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getOperation().equals ("plus")) {
-                plusList.add(list.get(i));
+        for (Operation operation : list) {
+            if (operation.getOperation().equals("plus")) {
+                plusList.add(operation);
             }
         }
         return plusList;
     }
 
-    public List minusResult (List<Operation> list) {
+    private List minusResult (List<Operation> list) {
         ArrayList minusList = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getOperation().equals ("minus")) {
-                minusList.add(list.get(i));
+        for (Operation operation : list) {
+            if (operation.getOperation().equals("minus")) {
+                minusList.add(operation);
             }
         }
         return minusList;
     }
 
-    public List divResult (List<Operation> list) {
+    private List divResult (List<Operation> list) {
         List divList = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getOperation().equals ("minus")) {
-                divList.add(list.get(i));
+        for (Operation operation : list) {
+            if (operation.getOperation().equals("minus")) {
+                divList.add(operation);
             }
         }
         return divList;
     }
-    public List timesResult (List<Operation> list) {
+    private List timesResult(List<Operation> list) {
         List timesList = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getOperation().equals ("minus")) {
-                timesList.add(list.get(i));
+        for (Operation operation : list) {
+            if (operation.getOperation().equals("minus")) {
+                timesList.add(operation);
             }
         }
         return timesList;

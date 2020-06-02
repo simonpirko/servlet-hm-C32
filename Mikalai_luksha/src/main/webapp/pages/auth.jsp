@@ -12,4 +12,6 @@
 </form>
 ${requestScope.message}
 </body>
+
+<a href="/">main</a>
 </html>
