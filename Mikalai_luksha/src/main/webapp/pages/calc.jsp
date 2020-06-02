@@ -25,13 +25,10 @@
     <button>Calc</button>
 </form>
 
+</body>
 
 ${requestScope.res}
 
-<ul class="stms">
 <a href="/">Main</a>
-</ul>
 
-
-</body>
 </html>
