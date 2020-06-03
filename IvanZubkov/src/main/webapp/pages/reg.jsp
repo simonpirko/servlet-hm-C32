@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>Reg</title>
+    <title>Registration</title>
 </head>
 <body>
 <form action="/reg" method="post">

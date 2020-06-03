@@ -7,18 +7,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName = "FilterCurrentUser", servletNames = {"CalcServlet", "LogoutServlet", "HistoryServlet"})
+//@WebFilter(filterName = "FilterCurrentUser", servletNames = {"CalcServlet", "LogoutServlet", "HistoryServlet"})
 
-public class CurrentUserFilter extends HttpFilter {
+//public class CurrentUserFilter extends HttpFilter {
 
-    @Override
-    protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        if (req.getSession().getAttribute("currentUser") == null){
-            req.setAttribute("message", "Need authorisation");
-            getServletContext().getRequestDispatcher("/").forward(req, res);
-        }
-        else {
-            chain.doFilter(req, res);
-        }
-    }
-}
+//    @Override
+//    protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+//        if (req.getSession().getAttribute("currentUser") == null){
+//            req.setAttribute("message", "Need authorisation");
+//            getServletContext().getRequestDispatcher("/").forward(req, res);
+//        }
+//        else {
+//            chain.doFilter(req, res);
+//        }
+//    }
+//}

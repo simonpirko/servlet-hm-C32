@@ -2,7 +2,6 @@ package web.servlet;
 
 import entity.User;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,9 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
-import jdk.nashorn.internal.ir.CallNode;
-import src.main.java.storage.UserStorage;
 
 @WebServlet(urlPatterns = "/reg", name = "RegServlet")
 

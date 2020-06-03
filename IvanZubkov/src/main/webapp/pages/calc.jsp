@@ -5,12 +5,12 @@
 <html>
 <head>
     <title>Calculator</title>
-    <style>
-        .stms {
-            color: black;
-        }
+<%--    <style>--%>
+<%--        .stms {--%>
+<%--            color: black;--%>
+<%--        }--%>
 
-    </style>
+<%--    </style>--%>
 </head>
 <body>
 <form action="/calc" method="post">
