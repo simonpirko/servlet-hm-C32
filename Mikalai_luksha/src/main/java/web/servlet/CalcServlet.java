@@ -35,7 +35,7 @@ public class CalcServlet extends HttpServlet {
             List <Operation> result = (List) req.getSession().getAttribute("result");
 
             result.add (new Operation (num1, num2, res, operation, currentUser));
-            req.setAttribute("res",new Operation (num1, num2, res, operation, currentUser));
+            req.setAttribute("res", num1 + " " + symbol + " " + num2 + "= "+ res);
 
             getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
 

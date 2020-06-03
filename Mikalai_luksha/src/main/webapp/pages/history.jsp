@@ -29,6 +29,8 @@
     <button>Sort</button>
 </form>
 
+<b> ${requestScope.messageSort}</b>
+
 
 <ul style="list-style: decimal">
 
