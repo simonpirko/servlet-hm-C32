@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-@WebFilter(filterName = "FilterNum", servletNames = "CalcServlet")
+@WebFilter(filterName = "FilterNum", servletNames = "MainServlet")
 
 public class NumFilter extends HttpFilter {
 
@@ -36,4 +36,8 @@ public class NumFilter extends HttpFilter {
         else chain.doFilter(req, res);
     }
 
+    @Override
+    public void destroy() {
+
+    }
 }

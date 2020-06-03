@@ -1,4 +1,4 @@
-package storage;
+package service;
 
 import entity.User;
 
@@ -6,15 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserStorage {
-
-    private static List<User> list = new ArrayList<>();
+    public static List<User> userList = new ArrayList<User>();
 
     public void add(User user) {
-        list.add(user);
+        userList.add(user);
     }
 
     public User getUserByLogin(String login) {
-        for (User user : list) {
+        for (User user : userList) {
             if (user.getLogin().equals(login)) {
                 return user;
             }
@@ -22,14 +21,13 @@ public class UserStorage {
         return null;
     }
 
-    public boolean checkUserByLogin (String login){
-        for (User user: list  ) {
-            if (user.getLogin().equals(login)){
-                return false;
+    public boolean checkUserByLogin(String login) {
+        for (User user : userList) {
+            if (user.getPassword().equals(login)) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 }
-
 

@@ -1,10 +1,8 @@
 package service;
 
 import entity.User;
-import storage.UserStorage;
 
 public class UserService {
-
     private UserStorage userStorage = new UserStorage();
 
     public User authService(String login, String password) {
@@ -28,10 +26,11 @@ public class UserService {
             return message;
         } else {
             if (!user.getPassword().equals(password)) {
-                message = "Password not correct";
+                message = "Incorrect password";
                 return message;
             }
         }
         return null;
     }
 }
+
