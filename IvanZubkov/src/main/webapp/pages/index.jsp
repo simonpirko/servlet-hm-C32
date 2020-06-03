@@ -1,24 +1,6 @@
 <html>
 
 <head>
-    <style>
-        .breadcrumbs {
-            margin: 0; /* Убираем отступы */
-            padding: 10px; /* Поля вокруг текста */
-            background: #b2d235; /* Цвет фона */
-        }
-        .breadcrumbs li {
-            display: inline-block; /* Размещаем список по горизонтали */
-        }
-        .breadcrumbs a {
-            color: #000000; /* Цвет ссылок */
-            text-decoration: underline black;
-        }
-        .breadcrumbs li + li::before {
-            content: '/'; /* Разделитель ссылок */
-            padding: 0 7px; /* Расстояние вокруг разделителя */
-        }
-    </style>
 
 </head>
 <body>

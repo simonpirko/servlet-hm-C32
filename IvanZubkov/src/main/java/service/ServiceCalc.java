@@ -1,4 +1,4 @@
-package src.main.java.service;
+package service;
 
 public class ServiceCalc {
 
@@ -24,7 +24,6 @@ public class ServiceCalc {
     }
 
     public String symbol (String operation) {
-
         switch (operation) {
             case ("plus"):
                 return "+";

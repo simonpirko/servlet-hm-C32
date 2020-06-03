@@ -1,4 +1,4 @@
-package src.main.java.web.servlet;
+package web.servlet;
 
 import entity.User;
 

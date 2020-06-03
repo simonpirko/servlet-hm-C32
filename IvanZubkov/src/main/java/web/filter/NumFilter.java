@@ -1,4 +1,4 @@
-package src.main.java.web.filter;
+package web.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -6,14 +6,12 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.reflect.Method;
 
 @WebFilter(filterName = "FilterNum", servletNames = "CalcServlet")
 
 public class NumFilter extends HttpFilter {
 
     @Override
-
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException, NumberFormatException {
 
         if (req.getMethod().equals("POST")) {

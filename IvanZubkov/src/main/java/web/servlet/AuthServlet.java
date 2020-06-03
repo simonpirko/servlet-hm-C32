@@ -1,4 +1,4 @@
-package src.main.java.web.servlet;
+package web.servlet;
 
 import entity.User;
 import service.UserService;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/auth", name = "AuthServlet")
 
@@ -21,18 +22,22 @@ public class AuthServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService();
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        User user = userService.authService(login, password);
-        if (user != null){
-            req.getSession().setAttribute("currentUser", user);
-            resp.sendRedirect("/");
+        User userForCheck = new User(login, password);
+        req.getSession().setAttribute("currentUser", userForCheck);
+        List<User> users = (List<User>) req.getSession().getAttribute("users");
+        if (users.contains(userForCheck.getLogin().equals(login))){
+            if (users.contains(userForCheck.getPassword().equals(password))) {
+                resp.sendRedirect("/pages.calc.jsp");
+            } else {
+                req.setAttribute("message", "Wrong password!");
+                resp.sendRedirect("/pages/auth.jsp");
+            }
+            req.setAttribute("message", "Wrong login!");
+            resp.sendRedirect("/pages/auth.jsp");
         }
-        else {
-           String message = userService.authMessageService(login, password);
-           req.setAttribute("message", message);
-           getServletContext().getRequestDispatcher("/pages/auth.jsp").forward(req, resp);
+           getServletContext().getRequestDispatcher("/pages.calc.jsp").forward(req, resp);
         }
     }
-}
+

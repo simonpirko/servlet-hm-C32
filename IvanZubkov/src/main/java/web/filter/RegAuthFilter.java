@@ -1,4 +1,4 @@
-package src.main.java.web.filter;
+package web.filter;
 
 import entity.User;
 

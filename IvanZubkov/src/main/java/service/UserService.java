@@ -1,11 +1,11 @@
-package src.main.java.service;
+package service;
 
 import entity.User;
-import storage.UserStorage;
+import src.main.java.storage.UserStorage;
 
 public class UserService {
 
-    private UserStorage userStorage = new UserStorage();
+    private UserStorage userStorage = new src.main.java.storage.UserStorage();
 
     public User authService(String login, String password) {
         User user = userStorage.getUserByLogin(login);

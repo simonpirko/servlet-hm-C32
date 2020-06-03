@@ -1,5 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>>
+
 <html>
 <head>
     <title>History</title>
@@ -8,14 +10,19 @@
 
 <h2>${"History"}</h2>
 
-<ul style="list-style: decimal">
+<form action="history.jsp">
+    <select name="sort">
+        <option value="increase">Increase</option>
+        <option value="decrease">Increase</option>
+    </select>
+    <button>Start sort</button>
 
-<%
-    List <String> result = (List) request.getSession().getAttribute("result");
-    for (int i = 0; i < result.size(); i++) {
-        out.println ( "<li>" + result.get(i) + "</li>" );
-    }
-%>
+</form>
+
+<ul style="list-style: decimal">
+    <c:forEach items="${requestScope.sorteredList}" var="item">
+        <li>${item}</li>
+    </c:forEach>
 </ul>
 
 <a href="/">main</a>

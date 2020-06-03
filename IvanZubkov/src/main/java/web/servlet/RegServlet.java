@@ -1,7 +1,7 @@
-package src.main.java.web.servlet;
+package web.servlet;
 
 import entity.User;
-import storage.UserStorage;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
+import jdk.nashorn.internal.ir.CallNode;
+import src.main.java.storage.UserStorage;
 
 @WebServlet(urlPatterns = "/reg", name = "RegServlet")
 
@@ -21,13 +25,15 @@ public class RegServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserStorage userStorage = new UserStorage();
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        if (userStorage.checkUserByLogin(login)) {
-        userStorage.add(new User(login, name, password));
-        resp.sendRedirect("/");
+        User newUser = new User(name, login, password);
+        req.getSession().setAttribute("currentUser", newUser);
+        List<User> users = (List<User>) req.getSession().getAttribute("users");
+        if (users.contains(newUser.getLogin().equals(login))) {
+            users.add(new User(login, name, password));
+            resp.sendRedirect("/");
         }
         else {
             req.setAttribute("message", "Login can't be used");
