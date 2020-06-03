@@ -25,15 +25,10 @@ public class HistoryServlet extends HttpServlet {
             List<Operation> result = (List<Operation>) req.getSession().getAttribute("result");
             List<Operation> operations = (List<Operation>) historyService.calcResult(operation, result);
             List<Operation> operations1 =  new ArrayList<>(operations);
-            if (sort != null && sort.equalsIgnoreCase("asc")){
-                operations1.sort(Operation::compareTo);
-            }
-            if (sort != null && sort.equalsIgnoreCase("desc")){
-                operations1.sort(Operation::compareToRevers);
-            }
-            req.setAttribute("resHis", operations1);
+            List<Operation> operationList = (List<Operation>) historyService.sortRes(sort, operations1);
+            req.setAttribute("resHis", operationList);
+            req.setAttribute("messageSort", "Operation -" + operation + ", sorting - " + sort );
         }
-
         getServletContext().getRequestDispatcher("/pages/history.jsp").forward(req, resp);
     }
 

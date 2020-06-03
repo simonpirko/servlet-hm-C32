@@ -68,6 +68,20 @@ public class HistoryService {
         return timesList;
     }
 
+    public List<Operation> sortRes (String sort, List<Operation> operationList){
+
+        if (sort != null && sort.equalsIgnoreCase("asc")){
+            operationList.sort(Operation::compareTo);
+        }
+        if (sort != null && sort.equalsIgnoreCase("desc")){
+            operationList.sort(Operation::compareToRevers);
+        }
+        if (sort != null && sort.equalsIgnoreCase("no")){
+            return operationList;
+        }
+        return operationList;
+    }
+
 
 
 }
