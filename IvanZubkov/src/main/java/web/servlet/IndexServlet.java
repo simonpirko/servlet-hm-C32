@@ -1,4 +1,4 @@
-package src.main.java.web.servlet;
+package web.servlet;
 
 import entity.User;
 
@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/")
+
+// Это Колин код. Пока не разобрался что к чему, поэтому не трогал.
+// Тоже буду менять на свое.
 
 public class IndexServlet extends HttpServlet {
     @Override

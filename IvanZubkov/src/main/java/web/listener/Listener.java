@@ -1,5 +1,9 @@
-package src.main.java.web.listener;
+package web.listener;
 
+
+import entity.Operation;
+import entity.User;
+import service.ServiceCalc;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -29,7 +33,9 @@ public class Listener implements ServletContextListener, HttpSessionListener, Ht
 
 
     public void sessionCreated(HttpSessionEvent se) {
-        se.getSession().setAttribute("result", new ArrayList<>());
+        se.getSession().setAttribute("historyList", new ArrayList<Operation>());
+        se.getSession().setAttribute("calculator", new ServiceCalc());
+        se.getSession().setAttribute("users", new ArrayList<User>());
     }
 
     public void sessionDestroyed(HttpSessionEvent se) {
